@@ -1,0 +1,1 @@
+theme: paleta, tipografías, shapes y Theme.kt (configuración visual centralizada).

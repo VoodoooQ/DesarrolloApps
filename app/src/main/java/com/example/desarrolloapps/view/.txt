@@ -1,0 +1,1 @@
+view/: Activities / Fragments / Adapters / BindingAdapters / custom Views — código específico de Android que orquesta la UI, navegación y obtiene ViewModels; aquí se llama a los composables o se infla layouts.

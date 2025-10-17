@@ -1,0 +1,1 @@
+utils: helpers y extensiones para presentación (formatters, Modifiers, extension functions). Preferir funciones puras cuando sea posible.

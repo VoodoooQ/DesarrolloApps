@@ -1,0 +1,1 @@
+viewmodel/: ViewModel por pantalla/flujo — expone UI state (StateFlow/LiveData), maneja eventos de UI y coordina casos de uso/repositorios (sin referencias a Views/Context).

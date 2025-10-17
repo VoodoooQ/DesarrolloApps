@@ -1,0 +1,1 @@
+screens: composables o clases de pantalla (UI pura) que reciben estado y callbacks; sin lógica de negocio.
