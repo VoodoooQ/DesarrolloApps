@@ -93,7 +93,6 @@ fun MenuShellView(
                 modifier = Modifier.padding(paddingValues)
             ) {
                 composable(Route.Home.route) { HomeView() }
-                composable(Route.Tasks.route) { TasksView() }
                 composable(Route.Option1.route) { Option1View() }
                 composable(Route.Option2.route) { Option2View() }
                 composable(Route.Option3.route) { Option3View() }
@@ -198,7 +197,6 @@ fun DrawerContent(
 fun getIconForRoute(route: Route): androidx.compose.ui.graphics.vector.ImageVector {
     return when (route) {
         is Route.Home -> Icons.Default.Home
-        is Route.Tasks -> Icons.Default.CheckCircle
         is Route.Option1 -> Icons.Default.Build
         is Route.Option2 -> Icons.Default.Share
         is Route.Option3 -> Icons.Default.Edit

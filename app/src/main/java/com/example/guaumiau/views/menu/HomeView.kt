@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 /**
- * Vista de Home - Pantalla principal
+ * Vista de Home - Pantalla principal para clientes
  */
 @Composable
 fun HomeView() {
@@ -32,7 +32,7 @@ fun HomeView() {
         Divider()
         
         Text(
-            text = "Tienda de Juguetes Innovadores y Sostenibles para Mascotas",
+            text = "Tu Tienda de Juguetes para Mascotas",
             fontSize = 16.sp,
             fontWeight = FontWeight.Medium,
             color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -59,12 +59,12 @@ fun HomeView() {
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
-                    text = "Tu Tienda en Línea de Confianza",
+                    text = "¡Encuentra el Juguete Perfecto!",
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Juguetes innovadores y sostenibles para tus mascotas",
+                    text = "Productos innovadores y sostenibles para tus compañeros peludos",
                     fontSize = 14.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = androidx.compose.ui.text.style.TextAlign.Center
@@ -91,11 +91,11 @@ fun HomeView() {
             }
         }
         
-        // Características de productos
+        // Por qué elegirnos
         Card(modifier = Modifier.fillMaxWidth()) {
             Column(modifier = Modifier.padding(16.dp)) {
                 Text(
-                    text = "✨ Nuestros Productos",
+                    text = "✨ ¿Por Qué Elegirnos?",
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp
                 )
@@ -124,11 +124,11 @@ fun HomeView() {
             }
         }
         
-        // Categorías
+        // Categorías de productos
         Card(modifier = Modifier.fillMaxWidth()) {
             Column(modifier = Modifier.padding(16.dp)) {
                 Text(
-                    text = "🎁 Categorías",
+                    text = "🎁 Explora Nuestras Categorías",
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp
                 )
@@ -138,8 +138,8 @@ fun HomeView() {
                 Text("🐈 Juguetes para Gatos")
                 Text("🦜 Juguetes para Aves")
                 Text("🐾 Accesorios Interactivos")
-                Text("♻️ Productos Ecológicos")
-                Text("🎉 Novedades y Promociones")
+                Text("♻️ Línea Ecológica")
+                Text("🎉 Novedades y Ofertas")
             }
         }
     }

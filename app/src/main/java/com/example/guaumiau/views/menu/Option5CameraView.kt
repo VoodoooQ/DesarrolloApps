@@ -91,7 +91,7 @@ fun Option5CameraView() {
         Divider()
         
         Text(
-            text = "Captura de Fotos de Productos",
+            text = "Comparte Fotos de tu Mascota",
             fontSize = 16.sp,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
@@ -153,7 +153,7 @@ fun Option5CameraView() {
             },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("📷 Tomar Foto del Producto", fontSize = 16.sp)
+            Text("📷 Tomar Foto de tu Mascota", fontSize = 16.sp)
         }
         
         OutlinedButton(
@@ -205,13 +205,14 @@ fun Option5CameraView() {
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 Text(
-                    text = "ℹ️ Uso en Guau&Miau",
+                    text = "ℹ️ Comparte Momentos Especiales",
                     fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "Esta funcionalidad permite capturar fotos de los productos " +
-                            "(juguetes para mascotas) para agregarlas al catálogo de la tienda. " +
+                    text = "Captura y guarda fotos de tu mascota disfrutando de " +
+                            "sus juguetes favoritos de Guau&Miau. Comparte esos " +
+                            "momentos especiales con nosotros en redes sociales. " +
                             "Las imágenes se guardan en la carpeta Pictures/GuauMiau del dispositivo.",
                     fontSize = 14.sp
                 )
