@@ -1,3 +1,49 @@
 <resources>
     <string name="app_name">GuauMiau</string>
+    
+    <!-- General -->
+    <string name="add_pet">Agregar mascota</string>
+    <string name="pet_image">Imagen de mascota</string>
+    <string name="loading">Cargando…</string>
+    <string name="error">Error</string>
+    
+    <!-- Pet Types -->
+    <string name="pet_type_dog">Perro</string>
+    <string name="pet_type_cat">Gato</string>
+    
+    <!-- Pet Details -->
+    <string name="pet_name">Nombre</string>
+    <string name="pet_breed">Raza</string>
+    <string name="pet_age">Edad</string>
+    <string name="pet_age_years">%d años</string>
+    <string name="pet_description">Descripción</string>
+    
+    <!-- Actions -->
+    <string name="save">Guardar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="delete">Eliminar</string>
+    <string name="edit">Editar</string>
+    
+    <!-- Messages -->
+    <string name="pet_added_successfully">Mascota agregada exitosamente</string>
+    <string name="pet_updated_successfully">Mascota actualizada exitosamente</string>
+    <string name="pet_deleted_successfully">Mascota eliminada exitosamente</string>
+    <string name="error_loading_pets">Error al cargar mascotas</string>
+    <string name="no_pets_found">No se encontraron mascotas</string>
+    
+    <!-- Tasks -->
+    <string name="add_task">Agregar tarea</string>
+    <string name="no_tasks">No tienes tareas</string>
+    <string name="add_first_task">Presiona el botón + para crear tu primera tarea</string>
+    <string name="title">Título</string>
+    <string name="description">Descripción</string>
+    <string name="task_saved">Tarea guardada correctamente</string>
+    <string name="task_updated">Tarea actualizada</string>
+    <string name="task_deleted">Tarea eliminada</string>
+    <string name="confirm_delete_title">Confirmar eliminación</string>
+    <string name="confirm_delete_message">¿Estás seguro de eliminar esta tarea?</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="confirm_logout">¿Deseas cerrar sesión?</string>
 </resources>
