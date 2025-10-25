@@ -80,6 +80,7 @@ dependencies {
     // Navigation Component (compatible)
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.1")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.1")
+    implementation("androidx.navigation:navigation-compose:2.7.1")
     
     // Compose (para ui/theme y pantallas de Login/Registro)
     implementation("androidx.activity:activity-compose:1.7.0")

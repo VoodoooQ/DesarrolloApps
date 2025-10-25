@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.guaumiau.data.local.AppDatabase
 import com.example.guaumiau.data.repository.UserRepository
-import com.example.guaumiau.ui.main.TaskListActivity
+import com.example.guaumiau.ui.menu.MenuActivity
 import com.example.guaumiau.ui.theme.GuauMiauTheme
 import com.example.guaumiau.viewmodels.LoginViewModel
 import com.example.guaumiau.viewmodels.RegisterViewModel
@@ -58,9 +58,8 @@ class MainActivity : ComponentActivity() {
                 LoginScreen(
                     viewModel = loginViewModel,
                     onLoginSuccess = { userId ->
-                        // Navegar a TaskListActivity con el userId
-                        val intent = Intent(this@MainActivity, TaskListActivity::class.java).apply {
-                            putExtra(TaskListActivity.EXTRA_USER_ID, userId)
+                        // Navegar directamente a MenuActivity
+                        val intent = Intent(this@MainActivity, MenuActivity::class.java).apply {
                             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         }
                         startActivity(intent)
