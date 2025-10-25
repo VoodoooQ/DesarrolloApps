@@ -140,6 +140,15 @@ fun HomeView() {
                 Text("🐾 Accesorios Interactivos")
                 Text("♻️ Línea Ecológica")
                 Text("🎉 Novedades y Ofertas")
+                
+                Spacer(modifier = Modifier.height(16.dp))
+                
+                Text(
+                    text = "💡 Abre el menú lateral (☰) y selecciona 'Catálogo' para ver todos nuestros productos.",
+                    fontSize = 13.sp,
+                    color = MaterialTheme.colorScheme.primary,
+                    fontWeight = FontWeight.Medium
+                )
             }
         }
     }
