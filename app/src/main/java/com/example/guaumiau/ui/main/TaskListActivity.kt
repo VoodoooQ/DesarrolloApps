@@ -176,6 +176,10 @@ class TaskListActivity : AppCompatActivity() {
     
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            R.id.action_open_menu -> {
+                navigateToMenu()
+                true
+            }
             R.id.action_logout -> {
                 confirmLogout()
                 true
@@ -215,6 +219,11 @@ class TaskListActivity : AppCompatActivity() {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
+    }
+    
+    private fun navigateToMenu() {
+        val intent = Intent(this, com.example.guaumiau.ui.menu.MenuActivity::class.java)
+        startActivity(intent)
     }
     
     companion object {
