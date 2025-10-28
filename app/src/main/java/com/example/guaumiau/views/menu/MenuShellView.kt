@@ -117,7 +117,8 @@ fun MenuShellView(
                     )
                     ProfileView(viewModel = profileViewModel)
                 }
-                composable(Route.Option5.route) { Option5CameraView() }
+                composable(Route.Foro.route) { ForoView() }
+                composable(Route.Option5.route) { Option5CameraView(userEmail = userEmail) }
             }
         }
     }
@@ -271,6 +272,7 @@ fun getIconForRoute(route: Route): androidx.compose.ui.graphics.vector.ImageVect
         is Route.Home -> Icons.Default.Home
         is Route.Catalog -> Icons.Default.ShoppingCart
         is Route.Profile -> Icons.Default.Person
-        is Route.Option5 -> Icons.Default.AccountBox
+        is Route.Foro -> Icons.Default.Forum
+        is Route.Option5 -> Icons.Default.AddAPhoto
     }
 }
