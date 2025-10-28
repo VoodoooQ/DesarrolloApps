@@ -24,6 +24,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.guaumiau.data.PetType
 import com.example.guaumiau.data.model.PetEntity
@@ -38,7 +39,7 @@ import com.example.guaumiau.viewmodels.ProfileViewModel
 fun ProfileView(
     viewModel: ProfileViewModel = viewModel()
 ) {
-    val uiState by viewModel.uiState.collectAsState()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val scrollState = rememberScrollState()
 
     // Mostrar mensajes de éxito/error
