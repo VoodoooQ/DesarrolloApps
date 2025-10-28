@@ -7,6 +7,7 @@ sealed class Route(val route: String) {
     object Home : Route("home")
     object Catalog : Route("catalogo")
     object Profile : Route("perfil")
+    object Foro : Route("foro")
     object Option5 : Route("camara")
 }
 
@@ -39,8 +40,13 @@ val menuItems = listOf(
         description = "Ver y editar perfil"
     ),
     MenuItem(
+        route = Route.Foro,
+        title = "Foro",
+        description = "Feed de publicaciones"
+    ),
+    MenuItem(
         route = Route.Option5,
-        title = "Función Nativa (Cámara)",
-        description = "Integración con cámara"
+        title = "Crear Publicación",
+        description = "Tomar foto y publicar"
     )
 )

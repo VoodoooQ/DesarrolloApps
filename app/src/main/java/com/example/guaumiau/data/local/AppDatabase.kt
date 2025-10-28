@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.guaumiau.data.model.PetEntity
+import com.example.guaumiau.data.model.PostEntity
 import com.example.guaumiau.data.model.Task
 import com.example.guaumiau.data.model.UserEntity
 
@@ -13,8 +14,8 @@ import com.example.guaumiau.data.model.UserEntity
  * Singleton pattern para garantizar una única instancia
  */
 @Database(
-    entities = [Task::class, UserEntity::class, PetEntity::class],
-    version = 3,
+    entities = [Task::class, UserEntity::class, PetEntity::class, PostEntity::class],
+    version = 4,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -33,6 +34,11 @@ abstract class AppDatabase : RoomDatabase() {
      * Proporciona acceso al DAO de Pet
      */
     abstract fun petDao(): PetDao
+    
+    /**
+     * Proporciona acceso al DAO de Post
+     */
+    abstract fun postDao(): PostDao
     
     companion object {
         @Volatile
