@@ -5,7 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.guaumiau.data.PetRegistration
 import com.example.guaumiau.data.PetType
 import com.example.guaumiau.data.Validator
+import com.example.guaumiau.data.model.PetEntity
 import com.example.guaumiau.data.model.UserEntity
+import com.example.guaumiau.data.repository.PetRepository
 import com.example.guaumiau.data.repository.UserRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,7 +18,8 @@ import kotlinx.coroutines.launch
  * ViewModel para la pantalla de Registro
  */
 class RegisterViewModel(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val petRepository: PetRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(RegisterUiState())
@@ -162,6 +165,18 @@ class RegisterViewModel(
                 val userId = userRepository.registerUser(newUser)
                 
                 if (userId != null) {
+                    // Guardar las mascotas asociadas al usuario
+                    state.pets.forEach { petState ->
+                        if (petState.name.isNotBlank() && petState.type != null) {
+                            val petEntity = PetEntity(
+                                name = petState.name,
+                                type = petState.type.name, // Convertir enum a String
+                                userEmail = state.email
+                            )
+                            petRepository.addPet(petEntity)
+                        }
+                    }
+                    
                     // Registro exitoso
                     _uiState.value = _uiState.value.copy(
                         isLoading = false,

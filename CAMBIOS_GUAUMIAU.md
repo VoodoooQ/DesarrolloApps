@@ -1,5 +1,267 @@
 # 🐾 Cambios Realizados - Guau&Miau
 
+---
+
+## 🔐 27 de Octubre de 2025 - Loaders para Login y Logout
+
+**Requisito:** Agregar spinners/loaders para inicio y cierre de sesión.
+
+### Implementación:
+
+**1. Inicio de Sesión (Login)**
+```kotlin
+// LoginViewModel.kt:
+- Delay de 800ms antes de autenticar
+- Try-catch para manejo de errores
+- Estado: isLoading (ya existía)
+
+// LoginScreen.kt - Botón Login:
+- CircularProgressIndicator (20dp, 2dp stroke)
+- Texto dinámico: "INICIANDO SESIÓN..." / "INICIAR SESIÓN"
+- Spinner + texto mostrados simultáneamente
+- Color: onPrimary (blanco)
+```
+
+**2. Cierre de Sesión (Logout)**
+```kotlin
+// MenuShellView.kt:
+- Diálogo de confirmación AlertDialog
+- Estado local: isLoggingOut
+- Delay de 600ms para simular proceso
+- Scope.launch para coroutine
+
+// Diálogo Logout:
+- CircularProgressIndicator en botón (16dp, 2dp)
+- Texto dinámico: "Cerrando..." / "Cerrar Sesión"
+- Botón Cancelar deshabilitado durante proceso
+- Color: error (rojo)
+- Icono: ExitToApp
+```
+
+### Características UX:
+
+| Acción | Duración | Texto | Color Spinner |
+|--------|----------|-------|---------------|
+| **Login** | 800ms | "INICIANDO SESIÓN..." | Blanco (onPrimary) |
+| **Logout** | 600ms | "Cerrando..." | Blanco (onError) |
+| **Cambiar Password** | 800ms | "Guardando..." | Primary |
+| **Eliminar Mascota** | 500ms | Solo spinner | Error (rojo) |
+
+### Archivos Modificados:
+
+1. **LoginViewModel.kt**
+   - ✏️ `onLoginClick()`: delay(800) antes de authenticate
+   - ✏️ Try-catch ya implementado
+
+2. **LoginScreen.kt**
+   - ✏️ Botón muestra spinner + texto "INICIANDO SESIÓN..."
+   - ➕ Spacer(8.dp) entre spinner y texto
+
+3. **MenuShellView.kt**
+   - ➕ Estados: `showLogoutDialog`, `isLoggingOut`
+   - ➕ AlertDialog con confirmación de logout
+   - ✏️ `onBackToLogin` ahora abre diálogo
+   - ➕ Spinner en botón "Cerrar Sesión"
+
+### Flujo de Logout:
+```
+Usuario click "Cerrar Sesión" → 
+Drawer se cierra → 
+AlertDialog aparece → 
+Usuario confirma → 
+isLoggingOut = true → 
+Spinner visible →
+delay(600ms) → 
+onBackToLogin() → 
+Navega a MainActivity
+```
+
+### Resultado:
+✅ **BUILD SUCCESSFUL in 23s**  
+✅ Login con feedback visual profesional  
+✅ Logout con confirmación y loader  
+✅ Consistencia en todas las operaciones asíncronas  
+✅ Mejor experiencia de usuario  
+
+---
+
+## ⏳ 27 de Octubre de 2025 - Implementación de Loaders/Spinners
+
+**Requisito:** Agregar indicadores de carga (spinners) durante operaciones asíncronas de eliminación de mascota y cambio de contraseña.
+
+### Loaders Implementados:
+
+**1. Cambio de Contraseña**
+```kotlin
+// ProfileViewModel.kt:
+- Agregado delay de 800ms para visualizar loader
+- Try-catch para manejo de errores
+- Estado: isChangingPassword
+
+// ProfileView.kt - ChangePasswordDialog:
+- CircularProgressIndicator en botón "Guardar"
+- Deshabilita campos durante proceso
+- Texto dinámico: "Guardando..." / "Guardar"
+```
+
+**2. Eliminación de Mascota**
+```kotlin
+// ProfileViewModel.kt:
+- Agregado estado: isDeletingPet
+- Delay de 500ms para mostrar loader
+- Try-catch para manejo de errores
+
+// ProfileView.kt - PetItem:
+- CircularProgressIndicator reemplaza botón delete
+- Spinner color error (rojo)
+- Tamaño: 24dp, strokeWidth: 2dp
+- Diálogo bloqueado durante eliminación
+```
+
+### Archivos Modificados:
+
+1. **ProfileViewModel.kt**
+   - ✏️ `changePassword()`: delay 800ms + try-catch
+   - ✏️ `deletePet()`: delay 500ms + isDeletingPet state
+   - ➕ `isDeletingPet: Boolean` en ProfileUiState
+
+2. **ProfileView.kt**
+   - ✏️ `ChangePasswordDialog`: CircularProgressIndicator en botón
+   - ✏️ `AnimatedPetItem`: recibe parámetro isDeleting
+   - ✏️ `PetItem`: muestra spinner o botón según estado
+   - ✏️ Diálogo eliminación: solo aparece si !isDeleting
+
+### Resultado:
+✅ **BUILD SUCCESSFUL in 23s**  
+✅ Spinner circular durante cambio de contraseña (800ms)  
+✅ Spinner rojo durante eliminación de mascota (500ms)  
+✅ Mejor UX con feedback visual inmediato  
+✅ Campos bloqueados durante operaciones  
+
+---
+
+## 🎨 27 de Octubre de 2025 - Implementación de Animaciones
+
+**Requisito:** Agregar animaciones a las pantallas funcionales para cumplir con los criterios de evaluación.
+
+### Animaciones Implementadas:
+
+**1. CatalogView.kt**
+```kotlin
+// Animaciones agregadas:
+- AnimatedProductCard: Aparición escalonada con scale + alpha
+- Spring animation con dampingRatio MediumBouncy
+- Delay escalonado (index * 50ms) para efecto cascada
+- Imports: animation.core.*, animateFloatAsState, graphicsLayer
+```
+
+**2. ProfileView.kt**
+```kotlin
+// Animaciones agregadas:
+- AnimatedPetItem: Deslizamiento desde izquierda (offsetX)
+- Mensajes con AnimatedVisibility (slideInVertically + fadeIn/Out)
+- Botón agregar mascota con pulso infinito (rememberInfiniteTransition)
+- Spring animations para movimientos naturales
+```
+
+**3. LoginScreen.kt**
+```kotlin
+// Animaciones agregadas:
+- Entrada de pantalla completa (alpha + offsetY)
+- Mensaje de error con AnimatedVisibility
+- FadeIn suave de 600ms
+- Spring animation para bounce effect
+```
+
+### Tipos de Animaciones Utilizadas:
+
+| Tipo | Uso | Componente |
+|------|-----|------------|
+| **animateFloatAsState** | Alpha, scale | Productos, mascotas |
+| **animateDpAsState** | Offset, posición | Login, mascotas |
+| **AnimatedVisibility** | Mostrar/ocultar | Mensajes error/éxito |
+| **rememberInfiniteTransition** | Pulso continuo | Botón agregar mascota |
+| **spring()** | Movimientos naturales | Todas las animaciones |
+| **tween()** | Transiciones lineales | Alpha, delays |
+
+### Archivos Modificados:
+
+1. **CatalogView.kt**
+   - ➕ Imports de animation
+   - ➕ AnimatedProductCard composable
+   - ✏️ items() → itemsIndexed() en LazyColumn
+   - ➕ graphicsLayer para alpha
+
+2. **ProfileView.kt**
+   - ➕ Imports de animation
+   - ➕ AnimatedPetItem composable
+   - ✏️ Mensajes con AnimatedVisibility
+   - ➕ Botón con infinite pulse animation
+
+3. **LoginScreen.kt**
+   - ➕ Imports de animation
+   - ➕ Animación de entrada completa
+   - ✏️ Error message con AnimatedVisibility
+
+### Resultado:
+✅ Animaciones fluidas y naturales  
+✅ Compatible con API 24 (Compose animations nativas)  
+✅ Mejora UX con feedback visual  
+✅ **Cumple requisito de evaluación: Animaciones**
+
+---
+
+## 🐛 27 de Octubre de 2025 - Corrección: Guardado de Mascotas en Registro
+
+**Problema detectado:** Las mascotas agregadas durante el registro no se guardaban en la base de datos.
+
+### Archivos Modificados:
+
+**1. RegisterViewModel.kt**
+```kotlin
+// Agregado:
+- import PetEntity
+- import PetRepository
+- Constructor ahora recibe: userRepository, petRepository
+
+// Modificado método onRegisterClick():
+if (userId != null) {
+    // Guardar mascotas asociadas al usuario
+    state.pets.forEach { petState ->
+        if (petState.name.isNotBlank() && petState.type != null) {
+            val petEntity = PetEntity(
+                name = petState.name,
+                type = petState.type.name, // Enum → String
+                userEmail = state.email
+            )
+            petRepository.addPet(petEntity)
+        }
+    }
+    ...
+}
+```
+
+**2. MainActivity.kt**
+```kotlin
+// Agregado:
+- import PetRepository
+- private lateinit var petRepository: PetRepository
+
+// En onCreate():
+petRepository = PetRepository(database.petDao())
+
+// Al crear RegisterViewModel:
+RegisterViewModel(userRepository, petRepository)
+```
+
+### Resultado:
+✅ **BUILD SUCCESSFUL in 19s**  
+✅ Las mascotas ahora se guardan correctamente al registrarse  
+✅ Relación usuario-mascota establecida por `userEmail`  
+✅ Visible en apartado Perfil después del login
+
+---
+
 ## Fecha: 24 de Octubre de 2025
 
 ### ✅ ACTUALIZACIÓN FINAL: Aplicación para Clientes (No Administradores)

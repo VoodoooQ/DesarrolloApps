@@ -38,6 +38,18 @@ interface UserDao {
     suspend fun authenticate(email: String, password: String): UserEntity?
     
     /**
+     * Actualiza la contraseña de un usuario
+     */
+    @Query("UPDATE users SET password = :newPassword WHERE email = :email")
+    suspend fun updatePassword(email: String, newPassword: String)
+    
+    /**
+     * Obtiene un usuario por ID
+     */
+    @Query("SELECT * FROM users WHERE id = :userId LIMIT 1")
+    suspend fun getUserById(userId: Int): UserEntity?
+    
+    /**
      * Obtiene todos los usuarios (para debugging)
      */
     @Query("SELECT * FROM users")
