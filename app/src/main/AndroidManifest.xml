@@ -41,21 +41,6 @@
             </intent-filter>
         </activity>
         
-        <!-- TaskListActivity - Pantalla principal de tareas -->
-        <activity
-            android:name=".ui.main.TaskListActivity"
-            android:label="Mis Tareas"
-            android:theme="@style/Theme.GuauMiau"
-            android:parentActivityName=".ui.menu.MenuActivity" />
-        
-        <!-- AddEditTaskActivity - Crear/Editar tarea -->
-        <activity
-            android:name=".ui.addEdit.AddEditTaskActivity"
-            android:label="Nueva Tarea"
-            android:theme="@style/Theme.GuauMiau"
-            android:parentActivityName=".ui.main.TaskListActivity"
-            android:windowSoftInputMode="adjustResize" />
-        
         <!-- MenuActivity - Menú lateral con ejemplos -->
         <activity
             android:name=".ui.menu.MenuActivity"
