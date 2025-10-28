@@ -55,6 +55,9 @@ class LoginViewModel(
         
         viewModelScope.launch {
             try {
+                // Simular delay para mostrar loader
+                kotlinx.coroutines.delay(800)
+                
                 val user = userRepository.authenticateUser(state.email, state.password)
                 
                 if (user != null) {

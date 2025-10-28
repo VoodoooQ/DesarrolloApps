@@ -51,4 +51,28 @@ class UserRepository(private val userDao: UserDao) {
         withContext(Dispatchers.IO) {
             userDao.getUserByEmail(email)
         }
+    
+    /**
+     * Actualiza la contraseña de un usuario
+     * @param userEmail Email del usuario
+     * @param newPassword Nueva contraseña
+     * @return true si se actualizó correctamente, false en caso contrario
+     */
+    suspend fun updatePassword(userEmail: String, newPassword: String): Boolean = 
+        withContext(Dispatchers.IO) {
+            try {
+                userDao.updatePassword(userEmail, newPassword)
+                true
+            } catch (e: Exception) {
+                false
+            }
+        }
+    
+    /**
+     * Obtiene un usuario por ID
+     */
+    suspend fun getUserById(userId: Int): UserEntity? = 
+        withContext(Dispatchers.IO) {
+            userDao.getUserById(userId)
+        }
 }

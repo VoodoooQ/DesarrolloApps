@@ -6,6 +6,7 @@ package com.example.guaumiau.navigation
 sealed class Route(val route: String) {
     object Home : Route("home")
     object Catalog : Route("catalogo")
+    object Profile : Route("perfil")
     object Option1 : Route("componentes")
     object Option2 : Route("navegacion")
     object Option3 : Route("form")
@@ -35,6 +36,11 @@ val menuItems = listOf(
         route = Route.Catalog,
         title = "Catálogo",
         description = "Ver productos disponibles"
+    ),
+    MenuItem(
+        route = Route.Profile,
+        title = "Mi Perfil",
+        description = "Ver y editar perfil"
     ),
     MenuItem(
         route = Route.Option1,

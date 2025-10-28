@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.guaumiau.data.local.AppDatabase
+import com.example.guaumiau.data.repository.PetRepository
 import com.example.guaumiau.data.repository.UserRepository
 import com.example.guaumiau.ui.menu.MenuActivity
 import com.example.guaumiau.ui.theme.GuauMiauTheme
@@ -27,13 +28,15 @@ import com.example.guaumiau.views.RegisterScreen
 class MainActivity : ComponentActivity() {
     
     private lateinit var userRepository: UserRepository
+    private lateinit var petRepository: PetRepository
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
-        // Inicializar el repositorio
+        // Inicializar los repositorios
         val database = AppDatabase.getDatabase(applicationContext)
         userRepository = UserRepository(database.userDao())
+        petRepository = PetRepository(database.petDao())
         
         setContent {
             GuauMiauTheme {
@@ -57,9 +60,10 @@ class MainActivity : ComponentActivity() {
                 
                 LoginScreen(
                     viewModel = loginViewModel,
-                    onLoginSuccess = { userId ->
-                        // Navegar directamente a MenuActivity
+                    onLoginSuccess = { userEmail ->
+                        // Navegar directamente a MenuActivity con el email del usuario
                         val intent = Intent(this@MainActivity, MenuActivity::class.java).apply {
+                            putExtra("USER_EMAIL", userEmail)
                             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         }
                         startActivity(intent)
@@ -71,7 +75,7 @@ class MainActivity : ComponentActivity() {
                 )
             }
             "register" -> {
-                val registerViewModel = remember { RegisterViewModel(userRepository) }
+                val registerViewModel = remember { RegisterViewModel(userRepository, petRepository) }
                 
                 RegisterScreen(
                     viewModel = registerViewModel,

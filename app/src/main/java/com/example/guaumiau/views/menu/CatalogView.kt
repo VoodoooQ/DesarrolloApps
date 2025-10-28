@@ -1,10 +1,13 @@
 package com.example.guaumiau.views.menu
 
+import androidx.compose.animation.*
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -12,8 +15,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -146,7 +151,7 @@ fun CatalogView() {
         
         Divider(modifier = Modifier.padding(horizontal = 16.dp))
         
-        // Lista de productos
+        // Lista de productos con animación
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -154,10 +159,54 @@ fun CatalogView() {
             verticalArrangement = Arrangement.spacedBy(12.dp),
             contentPadding = PaddingValues(vertical = 16.dp)
         ) {
-            items(filteredProducts) { product ->
-                ProductCard(product = product)
+            itemsIndexed(filteredProducts) { index, product ->
+                // Animación de aparición escalonada
+                AnimatedProductCard(
+                    product = product,
+                    index = index
+                )
             }
         }
+    }
+}
+
+/**
+ * Card de producto con animación de entrada
+ */
+@Composable
+fun AnimatedProductCard(product: Product, index: Int) {
+    var isVisible by remember { mutableStateOf(false) }
+    
+    // Trigger de animación al aparecer
+    LaunchedEffect(key1 = product.id) {
+        isVisible = true
+    }
+    
+    // Animación de escala y alpha
+    val scale by animateFloatAsState(
+        targetValue = if (isVisible) 1f else 0.8f,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessLow
+        ),
+        label = "scale"
+    )
+    
+    val alpha by animateFloatAsState(
+        targetValue = if (isVisible) 1f else 0f,
+        animationSpec = tween(
+            durationMillis = 300,
+            delayMillis = index * 50 // Delay escalonado
+        ),
+        label = "alpha"
+    )
+    
+    Box(
+        modifier = Modifier
+            .scale(scale)
+            .graphicsLayer(alpha = alpha)
+    ) {
+        ProductCard(product = product)
     }
 }
 

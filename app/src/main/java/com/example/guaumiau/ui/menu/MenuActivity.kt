@@ -20,6 +20,9 @@ class MenuActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
+        // Obtener el email del usuario
+        val userEmail = intent.getStringExtra("USER_EMAIL") ?: ""
+        
         setContent {
             GuauMiauTheme {
                 Surface(
@@ -27,6 +30,7 @@ class MenuActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     MenuShellView(
+                        userEmail = userEmail,
                         onBackToLogin = {
                             // Volver al login
                             val intent = Intent(this, MainActivity::class.java)
