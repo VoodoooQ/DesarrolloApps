@@ -1,4 +1,4 @@
-package com.example.guaumiau.data
+package com.example.guaumiau.model
 
 /**
  * Modelo de datos para Usuario

@@ -1,5 +1,6 @@
 package com.example.guaumiau.data
 
+import com.example.guaumiau.model.PetType
 import java.util.regex.Pattern
 
 /**

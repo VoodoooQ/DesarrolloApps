@@ -2,7 +2,7 @@ package com.example.guaumiau.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.guaumiau.data.PetType
+import com.example.guaumiau.model.PetType
 import com.example.guaumiau.data.Validator
 import com.example.guaumiau.data.model.PetEntity
 import com.example.guaumiau.data.model.UserEntity

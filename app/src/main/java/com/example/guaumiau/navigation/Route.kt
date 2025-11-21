@@ -9,6 +9,7 @@ sealed class Route(val route: String) {
     object Profile : Route("perfil")
     object Foro : Route("foro")
     object Option5 : Route("camara")
+    object Weather : Route("clima") // Nueva ruta para clima
 }
 
 /**
@@ -38,6 +39,11 @@ val menuItems = listOf(
         route = Route.Profile,
         title = "Mi Perfil",
         description = "Ver y editar perfil"
+    ),
+    MenuItem(
+        route = Route.Weather,
+        title = "Clima",
+        description = "Clima de Santiago"
     ),
     MenuItem(
         route = Route.Foro,

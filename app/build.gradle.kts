@@ -94,8 +94,21 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
     
+    // Retrofit para consumo de API (Open-Meteo)
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
+    
+    // Gson para parseo JSON
+    implementation("com.google.code.gson:gson:2.10.1")
+    
     // Testing
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-core:5.3.1")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.0.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
