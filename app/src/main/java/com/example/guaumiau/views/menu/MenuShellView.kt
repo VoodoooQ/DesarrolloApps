@@ -16,11 +16,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.guaumiau.data.local.AppDatabase
 import com.example.guaumiau.data.repository.PetRepository
+import com.example.guaumiau.data.repository.RemotePetRepository
 import com.example.guaumiau.data.repository.UserRepository
 import com.example.guaumiau.navigation.Route
 import com.example.guaumiau.navigation.menuItems
 import com.example.guaumiau.viewmodels.ProfileViewModel
 import com.example.guaumiau.viewmodels.ProfileViewModelFactory
+import com.example.guaumiau.viewmodels.RemotePetViewModel
 import kotlinx.coroutines.launch
 
 /**
@@ -45,6 +47,7 @@ fun MenuShellView(
     val database = remember { AppDatabase.getDatabase(context) }
     val userRepository = remember { UserRepository(database.userDao()) }
     val petRepository = remember { PetRepository(database.petDao()) }
+    val remotePetRepository = remember { RemotePetRepository(database.petDao()) }
     
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -118,6 +121,12 @@ fun MenuShellView(
                     ProfileView(viewModel = profileViewModel)
                 }
                 composable(Route.Weather.route) { WeatherView() }
+                composable(Route.RailwayTest.route) {
+                    val remotePetViewModel = remember {
+                        RemotePetViewModel(remotePetRepository, userEmail)
+                    }
+                    RemotePetTestView(viewModel = remotePetViewModel)
+                }
                 composable(Route.Foro.route) { ForoView() }
                 composable(Route.Option5.route) { Option5CameraView(userEmail = userEmail) }
             }
@@ -274,6 +283,7 @@ fun getIconForRoute(route: Route): androidx.compose.ui.graphics.vector.ImageVect
         is Route.Catalog -> Icons.Default.ShoppingCart
         is Route.Profile -> Icons.Default.Person
         is Route.Weather -> Icons.Default.WbSunny
+        is Route.RailwayTest -> Icons.Default.Cloud
         is Route.Foro -> Icons.Default.Forum
         is Route.Option5 -> Icons.Default.AddAPhoto
     }

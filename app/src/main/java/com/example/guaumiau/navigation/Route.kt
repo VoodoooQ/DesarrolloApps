@@ -10,6 +10,7 @@ sealed class Route(val route: String) {
     object Foro : Route("foro")
     object Option5 : Route("camara")
     object Weather : Route("clima") // Nueva ruta para clima
+    object RailwayTest : Route("railway_test") // Prueba de Railway API
 }
 
 /**
@@ -44,6 +45,11 @@ val menuItems = listOf(
         route = Route.Weather,
         title = "Clima",
         description = "Clima de Santiago"
+    ),
+    MenuItem(
+        route = Route.RailwayTest,
+        title = "Railway API",
+        description = "Prueba de microservicio"
     ),
     MenuItem(
         route = Route.Foro,
